@@ -21,7 +21,26 @@ STEPS
 2.- connect SQLite database file\
 3.- print to a pdf?
 
+WORK FLOW 
 how many windows?
- Home window:
- with the primary key either
- search or add entry
+
+home window :
+search bar (add placehorlder to tell user what to type)
+with the primary key machine_id or name.
+
+2 buttons 
+	search and add a new entry.  
+
+ after hitting search window:
+ 	shows you if there was a result on a table this windows allows user to start adding machines to a PDF(HOW?)
+  check for user input mistakes
+ 	with the primary key machine id or name, user can either
+ 	search, add, delete or update machine entries to the database
+	on click display the correct functionality of each button:
+	
+SEARCH: look it up and show it to the user, so they can know all 
+	the details about the machine by name or id
+    ADD: adds a new machine to the DB, display a success message? 
+	DELETE: deletes the machine  given the ID 
+	UPDATE: given the id update the price
+	

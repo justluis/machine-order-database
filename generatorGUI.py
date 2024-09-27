@@ -6,6 +6,8 @@ root.title("Machine Order Generator")
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
+#needs to have search bar, where it asks to type in either name or machine ID
+
 def search_entry():
     #if searching then show the item in the windown
     #compare entry to data base
@@ -45,6 +47,9 @@ search_button.grid(row= 0, column= 1)
 
 add_button=ttk.Button(frame1, text="Add Entry", command=add_entry)
 add_button.grid(row=0,column=2)
+
+
+#delete button, update button, get all the machines, generate PDF button
 
 text_list = tkinter.Listbox(frame1)
 text_list.grid(row=1, column=0,columnspan=2,sticky="nsew")

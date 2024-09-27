@@ -4,13 +4,13 @@ INVENTORY_TABLE="CREATE TABLE IF NOT EXISTS inventory(machine_id TEXT PRIMARY KE
 INSERT_MACHINE="INSERT INTO machines VALUES (?,?,?,?,?,?)"
 GET_ALL_MACHINES="SELECT * FROM inventory;"
 NAME_LOOK_UP="SELECT * FROM inventory WHERE name=?;"
+ID_LOOK_UP="SELECT * FROM inventory WHERE machine_id=?;"
 DELETE_MACHINE="DELETE FROM inventory WHERE machine_id=?;"
 UPDATE_MACHINE="""
     UPDATE inventory
     SET price=?
     WHERE machine_id=?;
 """
-
 
 #create a function that returns connection to the database provided
 def connection():
@@ -32,6 +32,10 @@ def get_all_machines(connection):
 def name_search(connection,name):
     with connection:
         return connection.execute(NAME_LOOK_UP,(name,)).fetchall()
+#function looks up by machine id
+def id_search(connection,machine_id):
+    with connection:
+        return connection.execute(ID_LOOK_UP,(machine_id,)).fetchall()
 
 # function to remove a machine if needed
 #needs work
@@ -44,18 +48,5 @@ def update_machine(connection, machine_id, price):
     with connection:
         connection.execute(UPDATE_MACHINE,(connection, machine_id, price))
 
-
-
 connection().commit()
 connection().close()
-
-# def cursor():
-#     return sqlite3.Cursor
-
-# machine_list = [
-#     ("CF-3163", "flat bench","pinche flat bench duh", 2, 329.45, 658.9)
-#     ]
-
-#printing the values in a table by using the cursor
-#for row in cursor.execute("select * from machine_order"):
-    #print(row)
