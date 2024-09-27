@@ -1,7 +1,12 @@
 import sqlite3
 #create queries in order to use them at any time
-inventory_table="CREATE TABLE IF NOT EXISTS inventory(machine_id TEXT PRIMARY KEY,name TEXT,description TEXT,quantity INT,price FLOAT,total FLOAT);"
-insert_machine="INSERT INTO machines VALUES (?,?,?,?,?,?)"
+INVENTORY_TABLE="CREATE TABLE IF NOT EXISTS inventory(machine_id TEXT PRIMARY KEY,name TEXT,description TEXT,quantity INT,price FLOAT,total FLOAT);"
+INSERT_MACHINE="INSERT INTO machines VALUES (?,?,?,?,?,?)"
+GET_ALL_MACHINES="SELECT * FROM inventory;"
+NAME_LOOK_UP="SELECT * FROM inventory WHERE name=?;"
+DELETE_MACHINE=""
+UPDATE_MACHINE=""
+
 
 #create a function that returns connection to the database provided
 def connection():
@@ -9,11 +14,28 @@ def connection():
 
 def create_table(connection):
     with connection:
-        connection.execute(inventory_table)
+        connection.execute(INVENTORY_TABLE)
 
 def add_machine(connection, machine_id, name, description, quantity, price, total):
     with connection:
-        connection.execute(insert_machine,(connection, machine_id, name, description, quantity, price, total))
+        connection.execute(INSERT_MACHINE,(connection, machine_id, name, description, quantity, price, total))
+
+#function that gets everything in the table
+def get_all_machines(connection):
+    with connection:
+        return connection.execute(GET_ALL_MACHINES).fetchall()
+#function looks up by machine name
+def name_search(connection,name):
+    with connection:
+        return connection.execute(NAME_LOOK_UP,(name,)).fetchall()
+# function to remove a machine if needed
+def remove_machine(connection, machine_id, name, description, quantity, price, total):
+    with connection:
+        connection.execute(DELETE_MACHINE,(connection, machine_id, name, description, quantity, price, total))
+def update_machine(connection, machine_id, name, description, quantity, price, total):
+    with connection:
+        connection.execute(UPDATE_MACHINE,(connection, machine_id, name, description, quantity, price, total))
+
 
 
 connection().commit()

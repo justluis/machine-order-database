@@ -9,8 +9,9 @@ Machine order generator time in so far? Tuesday start -5:30
 // User needs to be able to add, remove and update information of the items as they desire.
 
 STEPS
-1.-create database file 
+1.-create database 
 	*Primary key
+
 
 1.- create window with Tkinker
 	* Item number entry field(primary key)
