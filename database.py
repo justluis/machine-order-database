@@ -11,6 +11,7 @@ UPDATE_MACHINE="""
     SET price=?
     WHERE machine_id=?;
 """
+#not too sure about update query need to test them
 
 #create a function that returns connection to the database provided
 def connection():

@@ -1,4 +1,4 @@
-import tkinter, database
+import tkinter#, database
 from tkinter import ttk
 root = tkinter.Tk()
 root.geometry("400x300")
@@ -12,11 +12,13 @@ MENU_PROMPT= """Machine app menu
     3) Show all the machines
     4) Remove a machine
     5) Update a machine
-    6) Delete a machine """
+    6) Delete a machine
+    7) Exit
+    Please Enter an option """
 #needs to have search bar, where it asks to type in either name or machine ID
 #Then, it displays price, a description as well as the ablility to select quantity
 # and see a total for the amount of machines the user selected *
-machine_list = ["CF-3172-A","CF-3162","CF-3860","CF-3661-A","CF-3165","RPL-5403-B","RPL-5356","RS-1412"]
+#machine_list = ["CF-3172-A","CF-3162","CF-3860","CF-3661-A","CF-3165","RPL-5403-B","RPL-5356","RS-1412"]
 def search_entry():
     #if searching then show the item in the windown
     #check for user input error, compare? parse? datatype? do i want only the primary key or also the name?  to data base
@@ -24,11 +26,17 @@ def search_entry():
     #print("Test")
     connection = database.connection()
     database.create_table(connection)
+    #saving the input of the user
     input = user_input.get()
 
-    print(input)
-    #while( input != machine_list) #run while
-    #if
+    #check for typos
+    #add to database
+    #show it on the List box
+    #if database.ID_LOOK_UP == True:
+        #move to frame where user can select quantity etc
+       # database.add_machine(input)
+
+       # text_list.insert(tkinter.END, user_input)
 
 
 def add_entry():
