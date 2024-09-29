@@ -1,7 +1,10 @@
 import sqlite3
+
+import database
+
 #create queries in order to use them at any time
-INVENTORY_TABLE="CREATE TABLE IF NOT EXISTS inventory(machine_id TEXT PRIMARY KEY,name TEXT,description TEXT,quantity INT,price FLOAT,total FLOAT);"
-INSERT_MACHINE="INSERT INTO machines VALUES (?,?,?,?,?,?)"
+INVENTORY_TABLE="CREATE TABLE IF NOT EXISTS inventory(machine_id TEXT PRIMARY KEY,name TEXT,description TEXT,price FLOAT);"
+INSERT_MACHINE="INSERT INTO inventory VALUES (?,?,?,?)"
 GET_ALL_MACHINES="SELECT * FROM inventory;"
 NAME_LOOK_UP="SELECT * FROM inventory WHERE name=?;"
 ID_LOOK_UP="SELECT * FROM inventory WHERE machine_id=?;"
@@ -21,9 +24,9 @@ def create_table(connection):
     with connection:
         connection.execute(INVENTORY_TABLE)
 
-def add_machine(connection, machine_id, name, description, quantity, price, total):
+def insert_machine(connection, machine_id, name, description, price):
     with connection:
-        connection.execute(INSERT_MACHINE,(connection, machine_id, name, description, quantity, price, total))
+        connection.execute(INSERT_MACHINE,( machine_id, name, description, price))
 
 #function that gets everything in the table
 def get_all_machines(connection):
@@ -48,6 +51,7 @@ def remove_machine(connection, machine_id):
 def update_machine(connection, machine_id, price):
     with connection:
         connection.execute(UPDATE_MACHINE,(connection, machine_id, price))
+
 
 connection().commit()
 connection().close()

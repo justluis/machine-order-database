@@ -6,15 +6,6 @@ root.title("Machine Order Generator")
 root.columnconfigure(0, weight=1)
 root.rowconfigure(0, weight=1)
 
-MENU_PROMPT= """Machine app menu 
-    1) Find a Machine by ID
-    2) Add a machine
-    3) Show all the machines
-    4) Remove a machine
-    5) Update a machine
-    6) Delete a machine
-    7) Exit
-    Please Enter an option """
 #needs to have search bar, where it asks to type in either name or machine ID
 #Then, it displays price, a description as well as the ablility to select quantity
 # and see a total for the amount of machines the user selected *
@@ -24,6 +15,7 @@ def search_entry():
     #check for user input error, compare? parse? datatype? do i want only the primary key or also the name?  to data base
     #if not found ask the user if they want to add the number or try again?s
     #print("Test")
+
     connection = database.connection()
     database.create_table(connection)
     #saving the input of the user
