@@ -25,19 +25,27 @@ def menu():
         elif user_input == '2':#search a machine
             machine_id= input("enter machine ID")
             print(database.id_search(connection, machine_id))
+            exit()
 
-        elif user_input == '3':#update
+        elif user_input == '3':#update needs work idk if the query is right?
             machine_id = input("enter machine ID")
             update_machine(connection, machine_id)
-            database.update_machine(connection, name, price)
-
+            exit()
 
         elif user_input == '4':#Remove
-            print(user_input)
+            machine_id = input("enter machine ID")
+            delete_machine(connection,machine_id)
+            exit()
+
         elif user_input == '5':#show them all
-            print(user_input)
+            database.get_all_machines(connection)
+            exit()
+
+
         elif user_input == '6':#start order
+            machine_id = input("enter machine ID")
             print(user_input)
+            exit()
         else:
             print("invalid format")
 
@@ -51,13 +59,13 @@ def add_machine(connection,machine_id):
     database.insert_machine(connection, machine_id, name, description, price)
 def update_machine(connection,machine_id):
 #check to see if the
+      #name = input("Name of machine?")
+      #description= input("do you want to add a description")
+      price = float(input("enter the price"))
+      database.update_machine(connection, machine_id, price)
 
-    if database.id_search(connection,machine_id):
-        name = input("Name of machine?")
-        description= input("do you want to add a description")
-        price = float(input("enter the price"))
-        database.update_machine(connection, machine_id, name, description, price)
-
+def delete_machine(connection, machine_id):
+    database.remove_machine(connection,machine_id)
 
 def total(connection,price):
     quantity= int(input("how many?"))
