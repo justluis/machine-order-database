@@ -39,7 +39,9 @@ def name_search(connection,name):
 #function looks up by machine id
 def id_search(connection,machine_id):
     with connection:
-        return connection.execute(ID_LOOK_UP,(machine_id,)).fetchall()
+        return connection.execute(ID_LOOK_UP, (machine_id,)).fetchall()
+
+
 
 # function to remove a machine if needed
 #needs work

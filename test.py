@@ -15,19 +15,22 @@ def menu():
     connection = database.connection()
     database.create_table(connection)
 
-
-
     while( user_input := input(MENU_PROMPT))!='7':
-        if user_input == '1': #Add for machine
-            add_machine(connection)
+        if user_input == '1': #Add for machine also have to see if the Machine ID already in the database otherwise
+
+            machine_id = input("whats the machine ID?")
+            add_machine(connection, machine_id)
             exit()
 
         elif user_input == '2':#search a machine
-            id= input("enter machine ID")
-            database.id_search(connection,id)
-            print(user_input)
+            machine_id= input("enter machine ID")
+            print(database.id_search(connection, machine_id))
+
         elif user_input == '3':#update
-            print(user_input)
+            machine_id = input("enter machine ID")
+            update_machine(connection, machine_id)
+            database.update_machine(connection, name, price)
+
 
         elif user_input == '4':#Remove
             print(user_input)
@@ -40,15 +43,21 @@ def menu():
 
             #database.machine(connection)
 
-def add_machine(connection):
+def add_machine(connection,machine_id):
 
-    id = input("Machine ID?")
     name = input("Name of machine?")
-    description = input("do you want to add a description")
-    #quantity = int(input("Quantity desired?"))
+    description= input("do you want to add a description")
     price = float(input("enter the price"))
+    database.insert_machine(connection, machine_id, name, description, price)
+def update_machine(connection,machine_id):
+#check to see if the
 
-    database.insert_machine(connection, id, name, description, price)
+    if database.id_search(connection,machine_id):
+        name = input("Name of machine?")
+        description= input("do you want to add a description")
+        price = float(input("enter the price"))
+        database.update_machine(connection, machine_id, name, description, price)
+
 
 def total(connection,price):
     quantity= int(input("how many?"))
