@@ -9,11 +9,7 @@ GET_ALL_MACHINES="SELECT * FROM inventory;"
 NAME_LOOK_UP="SELECT * FROM inventory WHERE name=?;"
 ID_LOOK_UP="SELECT * FROM inventory WHERE machine_id=?;"
 DELETE_MACHINE="DELETE FROM inventory WHERE machine_id=?;"
-UPDATE_MACHINE="""
-    UPDATE inventory
-    SET price=?
-    WHERE machine_id=?;
-"""
+UPDATE_MACHINE="UPDATE inventory SET name=?,description=?,price=? WHERE machine_id=?;"
 #not too sure about update query need to test them
 
 #create a function that returns connection to the database provided
@@ -47,12 +43,12 @@ def id_search(connection,machine_id):
 #needs work
 def remove_machine(connection, machine_id):
     with connection:
-        connection.execute(DELETE_MACHINE,(connection, machine_id))
-
+            connection.execute(DELETE_MACHINE,(machine_id,))
 #needs work
-def update_machine(connection, machine_id, price):
+def update_machine(connection,machine_id,name,description,price):
     with connection:
-        connection.execute(UPDATE_MACHINE,(connection, machine_id, price))
+        connection.execute(UPDATE_MACHINE,(name,description,price, machine_id,))
+
 
 
 connection().commit()
