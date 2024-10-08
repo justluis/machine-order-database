@@ -22,6 +22,7 @@ def menu():
             machine_id= id_identifier(machine_id)
             add_machine(connection, machine_id)
 
+
         elif user_input == '2':#search a machine with the ID
             machine_id= input("enter machine ID")
             print(database.id_search(connection, machine_id))

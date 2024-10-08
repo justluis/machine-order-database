@@ -10,6 +10,7 @@ NAME_LOOK_UP="SELECT * FROM inventory WHERE name=?;"
 ID_LOOK_UP="SELECT * FROM inventory WHERE machine_id=?;"
 DELETE_MACHINE="DELETE FROM inventory WHERE machine_id=?;"
 UPDATE_MACHINE="UPDATE inventory SET name=?,description=?,price=? WHERE machine_id=?;"
+
 #not too sure about update query need to test them
 
 #create a function that returns connection to the database provided
@@ -49,6 +50,32 @@ def update_machine(connection,machine_id,name,description,price):
     with connection:
         connection.execute(UPDATE_MACHINE,(name,description,price, machine_id,))
 
+def delete_null_entries(db_name, table_name, column_name):
+    # Connect to the SQLite database
+    conn = sqlite3.connect(db_name)
+    cursor = conn.cursor()
+
+    # Formulate the SQL query to delete rows with NULL values in the specified column
+    query = f"DELETE FROM {table_name} WHERE {column_name} IS NULL"
+
+    try:
+        # Execute the query
+        cursor.execute(query)
+
+        # Commit the changes
+        conn.commit()
+        print(f"Rows with NULL values in '{column_name}' have been deleted from '{table_name}'")
+    except sqlite3.Error as e:
+        # If an error occurs, print it
+        print(f"An error occurred: {e}")
+    finally:
+        # Close the connection
+        cursor.close()
+        conn.close()
+
+
+# Example usage
+#delete_null_entries('machine.db', 'inventory', 'machine_id')
 
 
 connection().commit()
