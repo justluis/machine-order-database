@@ -1,3 +1,4 @@
+#switching over to pyside6 instead of tkinter
 import tkinter#, database
 from tkinter import ttk
 root = tkinter.Tk()

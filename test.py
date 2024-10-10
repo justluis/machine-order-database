@@ -1,4 +1,5 @@
 import database
+#File to test database options 1-4
 #MENU_PROMPT= """Machine app inventory...please enter an ID to look up machine..  """
 MENU_PROMPT= """-----------Machine App Menu -----------
     1) Add a machine.
@@ -50,8 +51,6 @@ def menu():
         else:
             print("invalid format")
 
-            #database.machine(connection)
-
 def add_machine(connection,machine_id):
 
     if not database.id_search(connection,machine_id) :
@@ -76,8 +75,6 @@ def id_identifier(machine_id):
         return machine_id
     else:
         print('Wrong ID Format')
-
-
 def update_machine(connection,machine_id):
     if database.id_search(connection,machine_id):
         price = float(input("enter the price"))
@@ -85,17 +82,12 @@ def update_machine(connection,machine_id):
         print('update successful')
     else:
         print('Unable to update, ID not in database')
-
-
-
 def delete_machine(connection, machine_id):
     if database.id_search(connection, machine_id):
         database.remove_machine(connection,machine_id)
         print('Machine Deleted Successfuly')
     else:
         print('Machine not found in the database..')
-
-
 def total(connection,price):
     quantity= int(input("how many?"))
     return quantity*price
