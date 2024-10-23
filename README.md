@@ -44,3 +44,13 @@ SEARCH: look it up and show it to the user, so they can know all
 	DELETE: deletes the machine  given the ID 
 	UPDATE: given the id update the price
 	
+ ----------------------------------------APP Structure-------------------------------------
+ Required Files
+ main- To control the app flow
+ database - Takes cares of backend of database,all the queries and making a conection to the DB
+ app_interface - GUI, all windows, visuals
+ pdf_creator- Takes care to take all the data from the window and prints it to a PDF
+ Clean up all the test file and the other files needed for the database to work(front end and back end)
+
+
+ 
